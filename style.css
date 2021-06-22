@@ -1,0 +1,45 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    background: beige;
+    align-items: center;
+    padding: 10px;
+    position: relative;
+    height: 60%;
+  overflow: hidden;
+}
+input#addtaskinput {
+    height: 38px;
+    outline: none;
+    border: 1px solid transparent;
+    padding: 8px;
+    width: 209px;
+    margin-bottom: 20px;
+}
+button#addtaskbtn {
+    width: 100%;
+    height: 41px;
+    background: beige;
+    border: transparent;
+    background: black;
+    color: #fff;
+    font-family: cursive;
+}
+table#addedtasklist {
+    position: absolute;
+    left: 10px;
+    bottom: 40px;
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>localstorage</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <input type="text" id="addtaskinput" placeholder="enter any value">
+    <button id="addtaskbtn" >click</button>
+    
+    <table id="addedtasklist">
+        
+    </table>
+    </div>
+
+    <script>
+       showtask();
+let addtaskinput = document.getElementById("addtaskinput");
+let addtaskbtn = document.getElementById("addtaskbtn");
+
+addtaskbtn.addEventListener("click", function(){
+    addtaskinputval = addtaskinput.value;
+    if(addtaskinputval.trim()!=0){
+        let webtask = localStorage.getItem("localtask");
+        if(webtask == null){
+            taskObj = [];
+        }
+        else{
+            taskObj = JSON.parse(webtask);
+        }
+        taskObj.push({'task_name':addtaskinputval, 'completeStatus':false});
+		// console.log(taskObj, 'Ashendra');
+        localStorage.setItem("localtask", JSON.stringify(taskObj));
+        addtaskinput.value = '';
+    }
+    showtask();
+})
+
+// showtask
+function showtask(){
+    let webtask = localStorage.getItem("localtask");
+    if(webtask == null){
+        taskObj = [];
+    }
+    else{
+        taskObj = JSON.parse(webtask);
+    }
+    let html = '';
+    let addedtasklist = document.getElementById("addedtasklist");
+    taskObj.forEach((item, index) => {
+
+        if(item.completeStatus==true){
+            taskCompleteValue = `<td class="completed">${item.task_name}</td>`;
+        }else{
+            taskCompleteValue = `<td>${item.task_name}</td>`;
+        }
+        html += `<tr>
+                    <th scope="row">${index+1}</th>
+                    ${taskCompleteValue}
+                    
+                </tr>`;
+    });
+    addedtasklist.innerHTML = html;
+
+}
+
+
+
+       
+    </script>
+      
+</body>
+
+</html>
